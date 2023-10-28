@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>digital clock</title>
+    <style>
+      @font-face {
+        font-family: digital;
+        src: url("../../../fonts/digital/digital-7/digital-7.ttf")
+          format(truetype);
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .clock {
+        display: flex;
+        font-size: 55px;
+      }
+      .clock p {
+        margin: 0 3px;
+        font-family: digital;
+        color: lime;
+        letter-spacing: 7px;
+      }
+      .day {
+        font-size: 20px;
+        letter-spacing: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="clock"></div>
+    </div>
+    <script>
+      setInterval(function () {
+        var clockDiv = document.querySelector(".clock");
+        var now = new Date();
+        var hr = now.getHours();
+        var min = now.getMinutes();
+        var sec = now.getSeconds();
+        var day = "AM";
+        if (sec < 10) sec = "0" + sec;
+        if (min < 10) min = "0" + min;
+        if (hr < 10) hr = "0" + hr;
+        if (hr > 12) {
+          hr -= 12;
+          day = "PM";
+        }
+        if (hr == 0) hr = 12;
+
+        clockDiv.innerHTML = `<p>${hr}</p><p> :</p> <p>${min}</p><p> : </p><p>${sec}</p> <p class="day">${day}</p>`;
+      }, 1000);
+    </script>
+  </body>
+</html>
